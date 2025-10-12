@@ -1,5 +1,7 @@
-# requirements.txt - Project dependencies for the application
-# Core runtime
+# Minimal, pip-friendly requirements for Fake News Detector
+# NOTE: For packages that are problematic on Windows (tokenizers, PyMuPDF),
+# use conda-forge locally: `conda install -c conda-forge sentence-transformers tokenizers pymupdf`
+
 streamlit>=1.18,<2.0
 requests>=2.28.0
 beautifulsoup4>=4.11.0
@@ -10,16 +12,13 @@ validators>=0.20.0
 langdetect>=1.0.9
 python-dotenv>=0.21.0
 
-# Embeddings & NLP (heavy; prefer conda-forge for tokenizers, PyMuPDF)
+# NLP & embeddings (heavy; prefer conda-forge on Windows)
 sentence-transformers>=2.2.0
 transformers>=4.30.0
 numpy>=1.22
 pandas>=1.5
 tqdm>=4.64.1
 
-# Testing & linting
+# Optional development / testing
 pytest>=7.0
 flake8>=4.0
-
-
-Notes: For Windows, the sentence-transformers tokenizers and some transformer dependencies are easier to install via conda-forge (conda install -c conda-forge sentence-transformers tokenizers).
