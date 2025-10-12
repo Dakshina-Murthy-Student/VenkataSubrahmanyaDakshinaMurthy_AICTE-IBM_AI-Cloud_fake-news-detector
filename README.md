@@ -111,32 +111,7 @@ If you are a reviewer or professor and need a demo key or access guidance, conta
 
 ---
 
---- filename: requirements.txt ---
 
-# Conservative, installable dependencies (use conda for heavy C/Rust-backed packages)
-streamlit>=1.18,<2.0
-requests>=2.28.0
-beautifulsoup4>=4.11.0
-pdfplumber>=0.7.6
-pytesseract>=0.3.10
-Pillow>=9.0.0
-validators>=0.20.0
-langdetect>=1.0.9
-python-dotenv>=0.21.0
-
-# Embeddings & NLP
-sentence-transformers>=2.2.0
-transformers>=4.30.0
-numpy>=1.22
-pandas>=1.5
-tqdm>=4.64.1
-
-# Testing & linting
-pytest>=7.0
-flake8>=4.0
-
-
-Notes: For Windows, the sentence-transformers tokenizers and some transformer dependencies are easier to install via conda-forge (conda install -c conda-forge sentence-transformers tokenizers).
 
 
 --- filename: FINAL_CHECKLIST.txt ---
@@ -185,4 +160,5 @@ Q: Streamlit Cloud fails installing dependencies — A: Move heavy packages (tok
 
 
 Q: Professor asks for non-LLM run — They can run the app without secrets or uncheck Use LLM (in advanced options).
+
 
