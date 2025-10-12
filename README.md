@@ -93,7 +93,7 @@ Supports: paste text, URL scraping, PDF / OCR images. Runs local heuristics **an
 
 ⦁	Model import slow / memory heavy — embedding model preloading recommended (see README_RUN.md).
 
-###Licensing & disclaimers
+### Licensing & disclaimers
 
 ⦁	Educational project — not for production publishing. The tool provides heuristics and (optionally) LLM outputs; human verification required.
 
@@ -104,6 +104,7 @@ Supports: paste text, URL scraping, PDF / OCR images. Runs local heuristics **an
 ⦁	If you are a reviewer or professor and need a demo key or access guidance, contact the submitting student.
 
 ---
+
 
 
 
