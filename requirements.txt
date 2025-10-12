@@ -1,0 +1,23 @@
+# requirements.txt - Project dependencies for the application
+# Core runtime
+streamlit>=1.18,<2.0
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+pdfplumber>=0.7.6
+pytesseract>=0.3.10
+Pillow>=9.0.0
+validators>=0.20.0
+langdetect>=1.0.9
+python-dotenv>=0.21.0
+
+# NLP & embeddings (heavy; prefer conda-forge for tokenizers, PyMuPDF)
+sentence-transformers>=2.2.0
+transformers>=4.30.0
+numpy>=1.22
+pandas>=1.5
+tqdm>=4.64.1
+
+
+# Testing / linting
+pytest>=7.0
+flake8>=4.0

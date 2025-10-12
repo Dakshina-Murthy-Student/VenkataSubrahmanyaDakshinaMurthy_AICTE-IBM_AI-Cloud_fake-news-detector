@@ -1,0 +1,14 @@
+#.gitignore for a Python project using Streamlit
+# Python
+*.pyc
+__pycache__/
+.venv/
+.env
+
+# Streamlit/Cache & secrets (do not commit secrets)
+.streamlit/
+cache_responses.json
+
+# OS files
+.DS_Store
+Thumbs.db
