@@ -28,9 +28,7 @@ Supports: paste text, URL scraping, PDF / OCR images. Runs local heuristics **an
 - `README.md` (this file)
 - `README_RUN.md`
 - `SUMMARY.md`
-- `FIXES.md`
 - `SECURITY_NOTES.md`
-- `CI_WORKFLOW.yml` (if you want GitHub Actions)
 - `FINAL_CHECKLIST.txt`
 
 **Files you must NOT commit (secrets / local caches):**
@@ -106,6 +104,7 @@ Supports: paste text, URL scraping, PDF / OCR images. Runs local heuristics **an
 ⦁	If you are a reviewer or professor and need a demo key or access guidance, contact the submitting student.
 
 ---
+
 
 
 
