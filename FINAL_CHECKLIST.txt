@@ -1,0 +1,44 @@
+FINAL CHECKLIST: Push to GitHub & Deploy to Streamlit Cloud
+
+1) Local cleanups
+   - Ensure .gitignore includes: .venv/, .streamlit/secrets.toml, cache_responses.json
+   - Ensure you removed any hard-coded API keys from config files.
+
+2) Initialize git (if not already)
+   git init
+   git add .
+   git commit -m "Initial stabilized submission - NLTK fallback and Streamlit ready"
+
+3) Create GitHub repo
+   - Create on github.com (name: fake-news-detector)
+   - Follow instructions to add remote and push:
+     git remote add origin git@github.com:<you>/<repo>.git
+     git branch -M main
+     git push -u origin main
+
+4) Connect Streamlit Cloud
+   - On streamlit.io/cloud -> New app -> Select GitHub repo and branch main -> set file path to app.py
+   - In App settings -> Secrets, add:
+     [api_keys]
+     OPENROUTER_API_KEY = "YOUR_OPENROUTER_KEY"
+
+5) Test deployment
+   - Use the public URL from Streamlit Cloud.
+   - If LLM results read MOCK or FALLBACK, check logs for "key" or "quota" messages.
+
+6) Share link with instructors/reviewers.
+
+Rollback:
+- If something breaks, revert local changes (if using git):
+  git checkout -- path/to/file
+- Or revert commit:
+  git reset --hard HEAD~1
+
+Short troubleshooting & FAQ (final)
+
+Q: LLM returns fallback even though I set secrets — A: Ensure secret name matches OPENROUTER_API_KEY (or set environment variable OPENROUTER_API_KEY) and redeploy app in Streamlit Cloud. Check app logs for startup messages.
+
+Q: Streamlit Cloud fails installing dependencies — A: Move heavy packages (tokenizers) to conda. For Cloud, try reducing pinned versions or pre-building a lightweight requirements file (without heavy packages) if you only need mock mode.
+
+
+Q: Professor asks for non-LLM run — They can run the app without secrets or uncheck Use LLM (in advanced options).
