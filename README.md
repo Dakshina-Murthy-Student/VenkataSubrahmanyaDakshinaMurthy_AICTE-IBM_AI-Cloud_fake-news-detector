@@ -81,35 +81,32 @@ Supports: paste text, URL scraping, PDF / OCR images. Runs local heuristics **an
 5. Use the UI (paste text, URL, or upload a PDF/image). For LLM-enabled results, ensure the key is present.
 ## Notes on API keys & privacy
 
-Never commit keys. Use Streamlit's Secrets Manager (Streamlit Cloud) for production, and local .streamlit/secrets.toml for local testing only (still do not commit).
+⦁	Never commit keys. Use Streamlit's Secrets Manager (Streamlit Cloud) for production, and local .streamlit/secrets.toml for local testing only (still do not commit).
 
-The app reads keys via config._get_secret so it supports both environment variables and Streamlit secrets.
+⦁	The app reads keys via config._get_secret so it supports both environment variables and Streamlit secrets.
 
-Troubleshooting (common)
+⦁	Troubleshooting (common)
 
-App crashes on start: LookupError: punkt_tab not found — run:
+⦁	App crashes on start: LookupError: punkt_tab not found — run:
 
-python -c "import nltk; nltk.download('punkt')"
+⦁	python -c "import nltk; nltk.download('punkt')" or rely on the app’s fallback (the app will use a regex-based splitter if NLTK tokenizer not available).
 
+⦁	LLM results show MOCK or FALLBACK — check the Streamlit app logs / terminal for messages about missing API key or quota; ensure the secret is set.
 
-or rely on the app’s fallback (the app will use a regex-based splitter if NLTK tokenizer not available).
+⦁	Model import slow / memory heavy — embedding model preloading recommended (see README_RUN.md).
 
-LLM results show MOCK or FALLBACK — check the Streamlit app logs / terminal for messages about missing API key or quota; ensure the secret is set.
+###Licensing & disclaimers
 
-Model import slow / memory heavy — embedding model preloading recommended (see README_RUN.md).
+⦁	Educational project — not for production publishing. The tool provides heuristics and (optionally) LLM outputs; human verification required.
 
-Licensing & disclaimers
+⦁	See SECURITY_NOTES.md for secret handling details.
 
-Educational project — not for production publishing. The tool provides heuristics and (optionally) LLM outputs; human verification required.
+###Contact
 
-See SECURITY_NOTES.md for secret handling details.
-
-Contact
-
-If you are a reviewer or professor and need a demo key or access guidance, contact the submitting student.
-
+⦁	If you are a reviewer or professor and need a demo key or access guidance, contact the submitting student.
 
 ---
+
 
 
 
