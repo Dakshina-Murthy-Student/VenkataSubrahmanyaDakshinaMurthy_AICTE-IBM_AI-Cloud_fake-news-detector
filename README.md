@@ -111,93 +111,6 @@ If you are a reviewer or professor and need a demo key or access guidance, conta
 
 ---
 
---- filename: FIXES.md ---
-
-# FIXES.md — What I changed and why
-
-1. **Crash on startup (NLTK punkt_tab lookup error)**
-   - File: `analyzer.py`
-   - Fix: Avoid runtime download and fallback to a deterministic regex sentence splitter when NLTK or punkt data are absent.
-   - Rationale: Prevent Streamlit from exiting during import; deterministic fallback ensures app always starts.
-
-2. **Session persistence & robust UI guards**
-   - File: `app.py`
-   - Fix: Use `st.session_state` for `article_text`/`metadata`; wrap sentence-splitting in try/except and show a one-line UI warning if fallback used.
-   - Rationale: Improve UX and avoid abrupt crashes.
-
-3. **Secure secrets access**
-   - File: `config.py` (no change required if your existing code already reads Streamlit secrets or environment variables)
-   - Rationale: Ensure keys are read from `st.secrets` or `os.environ` only.
-
-4. **Backend LLM behavior**
-   - Keep mock fallback for when API unavailable or key invalid; the app writes short error excerpts to UI and full trace info into logs (not exposed publicly).
-
-
---- filename: SECURITY_NOTES.md ---
-
-# SECURITY_NOTES.md
-
-## Secrets & API keys
-- **Do NOT commit** API keys (OpenRouter, Gemini, or other). Never add them to code or `requirements.txt`.
-- Local testing: `.streamlit/secrets.toml` is allowed for convenience **but must never be pushed**.
-- Streamlit Cloud: use the App → Secrets UI to set `api_keys.OPENROUTER_API_KEY` (or `GEMINI_API_KEY`) — the value is injected into the running container, not visible in the repo.
-
-## What the code expects
-- `config._get_secret("OPENROUTER_API_KEY")` will read from environment or `st.secrets`.
-- If an API key is missing, the app falls back to deterministic mock analysis.
-
-## Redacted/removed secrets
-- If any code previously had a literal API key string (e.g., `GEMINI_API_KEY = "AIza..."`), it should be removed and replaced with env/secrets access.
-- The app uses `utils.cache_*` functions that write to `cache_responses.json`. This file may contain cached outputs (no secrets) — it should be ignored in `.gitignore`.
-
-## Reviewer guidance
-- When reviewing the repo, ensure `.streamlit/secrets.toml` is absent.
-- If a key must be shared with a reviewer for grading, share via a secure channel (not in GitHub issues/PR comments).
-
-
---- filename: CI_WORKFLOW.yml ---
-
-# .github/workflows/ci.yml
-name: CI - Lint & Test
-
-on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
-
-jobs:
-  lint-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.10]
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install flake8 pytest
-
-      - name: Run flake8
-        run: |
-          flake8 .
-
-      - name: Run tests
-        run: |
-          pytest -q
-
-
-Note: This CI runs linting & tests only. It does not attempt to start Streamlit or run heavy model downloads.
-
 --- filename: requirements.txt ---
 
 # Conservative, installable dependencies (use conda for heavy C/Rust-backed packages)
@@ -272,3 +185,4 @@ Q: Streamlit Cloud fails installing dependencies — A: Move heavy packages (tok
 
 
 Q: Professor asks for non-LLM run — They can run the app without secrets or uncheck Use LLM (in advanced options).
+
