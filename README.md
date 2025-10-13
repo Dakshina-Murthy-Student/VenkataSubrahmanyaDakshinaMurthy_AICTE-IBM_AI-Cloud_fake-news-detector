@@ -99,11 +99,12 @@ Supports: paste text, URL scraping, PDF / OCR images. Runs local heuristics **an
 
 ⦁	See SECURITY_NOTES.md for secret handling details.
 
-###Contact
+### Contact
 
 ⦁	If you are a reviewer or professor and need a demo key or access guidance, contact the submitting student.
 
 ---
+
 
 
 
